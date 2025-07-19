@@ -25,7 +25,7 @@ abstract class Bullet{
     
     void judgeHit(Player p) {
         if (p.invincibleTimer > 0) {
-            return
+            return;
         }
         float dist = calcDist(p.x,p.y);
         if (dist <= (size + p.size) / 2) {

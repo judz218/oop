@@ -1,4 +1,4 @@
-class Enemy {
+abstract class Enemy {
     float x, y;
     int size = 50;
     Bullet[] bullet;

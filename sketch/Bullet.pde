@@ -2,6 +2,7 @@ abstract class Bullet{
     float x,y;
     float dx,dy;
     int size = 10;
+    boolean isDisplay = false;
     
     Bullet(float x0, float y0,float dx0, float dy0) {
         x = x0;

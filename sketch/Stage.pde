@@ -1,9 +1,7 @@
 abstract class Stage() {
-    int limit;
     int time;
     int base_time = 0;
     Stage(int l) {
-        limit = l;
         time = l;
         base_time = millis();
     }

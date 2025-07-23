@@ -27,8 +27,8 @@ class Enemy {
         rect(x, y, size, size);
     }
     
-    // 一定のフレーム感覚で弾を実体化
-    void countFrame() {
+    // 一定のフレーム間隔で弾を実体化
+    void materializeBullets() {
         frameCount++;
         if (frameCount == bulletInterval) {
             bullets[bulletIndex].isDisplay = true;
@@ -51,13 +51,16 @@ class Enemy {
     // bullets の管理
     void updateBullets(Player p) {
         for (int i = 0; i < bulletNum; i++) {
+            // isDisplay が false の場合，bullets の処理しない
             if (!bullets[i].isDisplay) {
                 continue;
             }
+
             bullets[i].display();
             bullets[i].judgeHit(p);
             bullets[i].move();
             
+            // 画面外に行ったら isDisplay を false にする
             if (!isInside(bullet[i].x,bullet[i].y)) {
                 bullet[i].isDisplay = false;
             }

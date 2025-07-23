@@ -17,6 +17,7 @@ abstract class Bullet{
         ellipse(x,y,size,size);
     }
     
+    // judgeHit() で使用する距離計算
     void calcDist(float x1,float y1) {
         float distX = pow(x1 - x,2);
         float distY = pow(y1 - y,2);
@@ -24,6 +25,7 @@ abstract class Bullet{
         return dist;
     }
     
+    // 当たり判定をし，プレイヤーにダメージを与える
     void judgeHit(Player p) {
         if (p.invincibleTimer > 0) {
             return;

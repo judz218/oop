@@ -27,6 +27,7 @@ class Enemy {
         rect(x, y, size, size);
     }
     
+    // 一定のフレーム感覚で弾を実体化
     void countFrame() {
         frameCount++;
         if (frameCount == bulletInterval) {
@@ -36,7 +37,8 @@ class Enemy {
         }
     }
     
-    boolean isInside(x,y) {
+    // 弾が画面内にあるかどうか判定
+    boolean isInside(float x, float y) {
         boolean isXOver0 = 0 <= x;
         boolean isXUnderWidth = x <= Width;
         boolean isYOver0 = 0 <= y;
@@ -46,6 +48,7 @@ class Enemy {
         }
     }
     
+    // bullets の管理
     void updateBullets(Player p) {
         for (int i = 0; i < bulletNum; i++) {
             if (!bullets[i].isDisplay) {

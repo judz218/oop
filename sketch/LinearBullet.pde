@@ -1,6 +1,9 @@
 class LinearBullet extends Bullet{
-    LinearBullet(float x0,float y0,float dx0,float dy0) {
-        super(x0,y0,dx0,dy0);
+    void init(float x0,float y0) {
+        x = x0;
+        y = y0;
+        dx = random(-1, 1);
+        dy = random(-1, 1);
     }
     
     void move() {

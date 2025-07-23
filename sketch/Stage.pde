@@ -1,10 +1,44 @@
-abstract class Stage() {
+class Stage {
     int time;
     int base_time = 0;
-    Stage(int l) {
+    int enemyNum; // ステージに登場する敵の数
+    Player p; // プレイヤー
+    Enemy[] enemies; // 敵を格納しておく配列
+
+    Stage(int l, int n) {
         time = l;
         base_time = millis();
+        enemyNum = n;
+        p = new Player();
+        enemies = new Enemy[enemyNum];
+        for (int i = 0; i < enemyNum; i++) {
+            enemies[i] = new Enemy(random(width), random(height / 2), 1.0); // 画面の上半分のランダムな位置に出現，linearBullet の確率は一旦100%
+        }
+        print(width, height);
     }
+
+    void stageManage() {
+        // ステージ処理
+        countDown();
+        drawLimit();
+        if (isFinished()) {
+            fill(0);
+            textSize(24);
+            textAlign(CENTER, CENTER);
+            text("Clear", width / 2, height / 2);
+        }
+
+        // プレイヤー処理
+        p.display();
+        p.move();
+
+        // 敵処理
+        for (int i = 0; i < enemyNum; i++) {
+            enemies[i].display();
+            enemies[i].materializeBullets();
+            enemies[i].updateBullets(p);
+        };
+    };
 
     // 時間を一秒ずつ減らす
     void countDown() {
@@ -18,7 +52,7 @@ abstract class Stage() {
     void drawLimit() {
         fill(0);
         textSize(24);
-        textAllign(RIGHT, TOP);
+        textAlign(RIGHT, TOP);
         text(time, 20, 20);
     }
 

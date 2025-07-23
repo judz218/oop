@@ -3,13 +3,8 @@ abstract class Bullet{
     float dx,dy;
     int size = 10;
     boolean isDisplay = false;
-    
-    Bullet(float x0, float y0,float dx0, float dy0) {
-        x = x0;
-        y = y0;
-        dx = dx0;
-        dy = dy0;
-    }
+
+    abstract void init(float x0, float y0);
     
     abstract void move();
     
@@ -18,7 +13,7 @@ abstract class Bullet{
     }
     
     // judgeHit() で使用する距離計算
-    void calcDist(float x1,float y1) {
+    float calcDist(float x1,float y1) {
         float distX = pow(x1 - x,2);
         float distY = pow(y1 - y,2);
         float dist = pow(distX + distY,0.5);
@@ -32,7 +27,7 @@ abstract class Bullet{
         }
         float dist = calcDist(p.x,p.y);
         if (dist <= (size + p.size) / 2) {
-            p.takeDamage();
+            p.takeDamage(1);
         }
     }
 }

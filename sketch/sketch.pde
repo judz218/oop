@@ -2,7 +2,9 @@ void setup() {
     size(800, 800);
 }
 
+Stage st1 = new Stage(10, 1); // ステージ1（時間：10秒，敵：1体）
+
 void draw() {
-    rect(100, 100, 50, 50);
-    ellipse(100,100,20,20);
+    background(255);
+    st1.stageManage();
 }

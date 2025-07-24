@@ -1,11 +1,11 @@
 class Stage {
-    int time;
+    float time;
     int base_time = 0;
     int enemyNum; // ステージに登場する敵の数
     Player p; // プレイヤー
     Enemy[] enemies; // 敵を格納しておく配列
 
-    Stage(int l, int n) {
+    Stage(float l, int n) {
         time = l;
         base_time = millis();
         enemyNum = n;
@@ -41,9 +41,13 @@ class Stage {
 
     // 時間を一秒ずつ減らす
     void countDown() {
-        if (millis() - base_time >= 1000) {
-            time--;
-            base_time = millis();
+        int currentTime = millis();
+        float dTime = (currentTime - base_time) / 1000.0;
+        time -= dTime;
+        base_time = currentTime;
+
+        if (time <= 0) {
+            time = 0;
         }
     }
 
@@ -51,13 +55,10 @@ class Stage {
     void drawLimit() {
         fill(0);
         textSize(24);
-        textAlign(RIGHT, TOP);
-        if (time <= 0) {
-            text("0", 20, 20);
-        } else {
-            text(time, 20, 20);
-        }
+        textAlign(LEFT, TOP);
+        text(nf(time, 2, 2), 20, 20);
     }
+    
 
     boolean isFinished() {
         return time <= 0;

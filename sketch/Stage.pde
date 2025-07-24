@@ -16,7 +16,6 @@ class Stage {
         }
         print(width, height);
     }
-
     void stageManage() {
         // ステージ処理
         countDown();
@@ -53,7 +52,11 @@ class Stage {
         fill(0);
         textSize(24);
         textAlign(RIGHT, TOP);
-        text(time, 20, 20);
+        if (time <= 0) {
+            text("0", 20, 20);
+        } else {
+            text(time, 20, 20);
+        }
     }
 
     boolean isFinished() {

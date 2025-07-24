@@ -1,5 +1,6 @@
 class Player {
-    int hp = 10; // プレイヤーの体力
+    int base_hp = 5;
+    int hp = base_hp; // プレイヤーの体力
     int size = 50; // 自機のサイズ
     float x = width / 2; // 自機の x 座標
     float y = height - 200; // 自機の y 座標
@@ -23,5 +24,9 @@ class Player {
     void takeDamage(int amount) {
         hp -= amount;
         invincibleTimer = 60;
+    }
+
+    boolean isFinished() {
+        return hp <= 0;
     }
 }

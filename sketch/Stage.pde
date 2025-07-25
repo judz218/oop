@@ -5,15 +5,16 @@ class Stage {
     Player p; // プレイヤー
     Enemy[] enemies; // 敵を格納しておく配列
 
-    Stage(float l, int n) {
+    Stage(float l, int n, float p0) {
         time = l;
         base_time = millis();
         enemyNum = n;
+        bulletPer = p0; // 弾の割合
         p = new Player();
         enemies = new Enemy[enemyNum];
         for (int i = 0; i < enemyNum; i++) {
             // 画面の上半分のランダムな位置に出現，linearBullet の確率は一旦100%
-            enemies[i] = new Enemy(random(width), random(height / 2), 1.0);
+            enemies[i] = new Enemy(random(width), random(height / 2), bulletPer);
         }
         print(width, height);
     }

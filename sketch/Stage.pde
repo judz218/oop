@@ -4,16 +4,18 @@ class Stage {
     int enemyNum; // ステージに登場する敵の数
     Player p; // プレイヤー
     Enemy[] enemies; // 敵を格納しておく配列
+    float bulletPer;
 
-    Stage(float l, int n) {
+    Stage(float l, int n, float p0) {
         time = l;
         base_time = millis();
         enemyNum = n;
+        bulletPer = p0; // 弾の割合
         p = new Player();
         enemies = new Enemy[enemyNum];
         for (int i = 0; i < enemyNum; i++) {
             // 画面の上半分のランダムな位置に出現，linearBullet の確率は一旦100%
-            enemies[i] = new Enemy(random(width), random(height / 2), 1.0);
+            enemies[i] = new Enemy(random(width), random(height / 2), bulletPer);
         }
         print(width, height);
     }
@@ -23,7 +25,7 @@ class Stage {
         drawLimit();
         drawHP();
         // ゲームクリア
-        if ((!p.isFinished()) && isFinished()) {
+        if ((!p.isDead()) && isFinished()) {
             fill(0);
             textSize(24);
             textAlign(CENTER, CENTER);
@@ -31,7 +33,7 @@ class Stage {
             return;
         } else {
             // ゲームオーバー
-            if (p.isFinished()) {
+            if (p.isDead()) {
                 fill(0);
                 textSize(24);
                 textAlign(CENTER, CENTER);

@@ -18,11 +18,17 @@ void draw() {
     if (!isStart) {
         textScreen.drawStartScreen();
         
-        // マウスをクリックしたらスタート
-        if (mousePressed) {
+        if (mousePressed) { // マウスをクリックしたらスタート
             isStart = true;
         }
     } else {
-        st1.stageManage();
+        // ステージ処理の実行とステージの状態の取得
+        int status = st1.stageManage();
+        
+        if (status == 1) { // クリア時
+            textScreen.drawStageClearScreen();
+        } else if (status == 2) { // ゲームオーバー
+            textScreen.drawGameOverScreen();
+        }
     }
 }

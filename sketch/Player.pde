@@ -26,7 +26,7 @@ class Player {
         invincibleTimer = 60;
     }
 
-    boolean isFinished() {
+    boolean isDead() {
         return hp <= 0;
     }
 }

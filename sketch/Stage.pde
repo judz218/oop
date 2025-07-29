@@ -5,7 +5,7 @@ class Stage {
     Player p; // プレイヤー
     Enemy[] enemies; // 敵を格納しておく配列
     float bulletPer;
-
+    
     Stage(float l, int n, float p0) {
         time = l;
         base_time = millis();
@@ -19,54 +19,50 @@ class Stage {
         }
         print(width, height);
     }
-    void stageManage() {
+    
+    int stageManage() {
+        // ゲームクリア
+        if ((!p.isDead()) && isFinished()) {
+            return 1;
+        } else {
+            // ゲームオーバー
+            if (p.isDead()) {
+                return 2;
+            }
+            // ゲームオーバー時の時間表示どうしようね
+        }
+        
         // ステージ処理
         countDown();
         drawLimit();
         drawHP();
-        // ゲームクリア
-        if ((!p.isDead()) && isFinished()) {
-            fill(0);
-            textSize(24);
-            textAlign(CENTER, CENTER);
-            text("Clear", width / 2, height / 2);
-            return;
-        } else {
-            // ゲームオーバー
-            if (p.isDead()) {
-                fill(0);
-                textSize(24);
-                textAlign(CENTER, CENTER);
-                text("GAME OVER", width / 2, height / 2);
-                return;
-            }
-            // ゲームオーバー時の時間表示どうしようね
-        }
-
+        
         // プレイヤー処理
         p.display();
         p.move();
-
+        
         // 敵処理
         for (int i = 0; i < enemyNum; i++) {
             enemies[i].display();
             enemies[i].materializeBullets();
             enemies[i].updateBullets(p);
         };
+        
+        return 0;
     };
-
+    
     // 時間を一秒ずつ減らす
     void countDown() {
         int currentTime = millis();
         float dTime = (currentTime - base_time) / 1000.0;
         time -= dTime;
         base_time = currentTime;
-
+        
         if (time <= 0) {
             time = 0;
         }
     }
-
+    
     // 残り時間を画面に表示
     void drawLimit() {
         fill(0);
@@ -83,19 +79,19 @@ class Stage {
         int rect_x = 50;
         int rect_y = height - 100;
         float hp_rect = base_rect_W / p.base_hp;
-
+        
         fill(255);
         rect(rect_x, rect_y, base_rect_W, rect_H);
         fill(#99ff99);
-        rect(rect_x, rect_y, hp_rect*p.hp, rect_H);
-
+        rect(rect_x, rect_y, hp_rect * p.hp, rect_H);
+        
         // 数値
         fill(0);
         textSize(30);
         textAlign(RIGHT, BOTTOM);
-        text(p.hp, width-15, height-50);
+        text(p.hp, width - 15, height - 50);
     }
-
+    
     boolean isFinished() {
         return time <= 0;
     }

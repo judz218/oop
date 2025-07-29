@@ -1,0 +1,81 @@
+\documentclass[dvipdfmx]{jsarticle} % 文書クラスの設定
+\usepackage[T1]{fontenc} % フォントの設定
+\usepackage{lmodern} % フォントの設定
+% この記事〈https://qiita.com/zr_tex8r/items/297154ca924749e62471〉に，フォント設定の詳細な説明がまとまっていました．
+\usepackage{multicol} % 多段組
+\usepackage{amsthm,amsmath,amssymb,amsfonts} % ams系
+\usepackage{latexsym} % 数式で使える記号を増やす
+\usepackage{mathrsfs} % 花文字など
+\usepackage{mathtools} % 数学系のいろいろ
+\usepackage[dvipdfmx]{graphicx,xcolor} % グラフィックと色
+\usepackage{float,wrapfig} % 図表の配置
+\usepackage{booktabs,multirow} % 表
+\usepackage{appendix} % 付録
+\usepackage{listings,jlisting} % ソースコード
+\usepackage[dvipdfmx]{hyperref} % ハイパーリンク
+
+\hypersetup{%
+ setpagesize=false,%
+ bookmarks=true,%
+ bookmarksdepth=tocdepth,%
+ bookmarksnumbered=true,%
+ colorlinks=false,%
+ pdftitle={},%
+ pdfsubject={},%
+ pdfauthor={},%
+ pdfkeywords={}}
+
+\theoremstyle{definition} % 定理環境のスタイル設定
+\newtheorem{theorem}{定理}[section]
+\newtheorem{lemma}[theorem]{補題}
+\newtheorem{corollary}[theorem]{系}
+\newtheorem{definition}[theorem]{定義}
+\newtheorem{remark}[theorem]{注}
+\newcommand{\x}{$\mathbb{X}$} % マクロの作成（新しいコマンドの定義）
+
+% タイトルの設定
+\title{タイトル}
+\author{$5423041$ 長谷川絢南 \and $5423052$ 渡邊陽翔 \and $5423072$ 境田悠希}
+% \author{太郎\thanks{○大学} \and 次郎\thanks{●大学院} \and 三郎\thanks{株式会社△}} % 著者が複数，注意書きが必要の場合
+\date{\today}
+
+\begin{document} % 本文の開始
+
+\maketitle % タイトルを出力
+
+\begin{abstract} % 概要
+  
+\end{abstract}
+
+\section{システムの概要（外部仕様）}
+
+\section{クラス設計の指針}
+
+\section{クラス設計の詳細}
+
+\section{実行結果}
+
+\section{クラス設計に対する考察}
+
+\section{}
+
+\appendix % 以降の節が付録になる
+
+\section{メンバーの誰が何を担当したか}
+
+\section{ソースコード}
+
+% ソースコードの表示設定
+\lstset{
+  frame=single, % 枠で囲む
+  numbers=left, % 左に行番号を表示
+  breaklines = true % 長い行の改行
+}
+
+% ソースコードの挿入
+\begin{lstlisting}[language=Python,caption=hello\_world.py,label=code:hello_world]
+message = "Hello World!"
+print(message)
+\end{lstlisting}
+
+\end{document}

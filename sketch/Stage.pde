@@ -4,6 +4,7 @@ class Stage {
     int enemyNum; // ステージに登場する敵の数
     Player p; // プレイヤー
     Enemy[] enemies; // 敵を格納しておく配列
+    float bulletPer;
 
     Stage(float l, int n, float p0) {
         time = l;
@@ -24,7 +25,7 @@ class Stage {
         drawLimit();
         drawHP();
         // ゲームクリア
-        if ((!p.isFinished()) && isFinished()) {
+        if ((!p.isDead()) && isFinished()) {
             fill(0);
             textSize(24);
             textAlign(CENTER, CENTER);
@@ -32,7 +33,7 @@ class Stage {
             return;
         } else {
             // ゲームオーバー
-            if (p.isFinished()) {
+            if (p.isDead()) {
                 fill(0);
                 textSize(24);
                 textAlign(CENTER, CENTER);

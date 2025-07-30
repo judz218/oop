@@ -13,12 +13,15 @@ class TextScreen{
         fill(0);
         textSize(24);
         textAlign(CENTER, CENTER);
-        text("Clear!", width / 2, height / 2);
+        text("Stage Clear!", width / 2, height / 2);
     }
     
     // ゲームクリア画面の描画
     void drawGameClearScreen() {
-        
+        fill(0);
+        textSize(24);
+        textAlign(CENTER, CENTER);
+        text("Game Clear!", width / 2, height / 2);
     }
     
     // ゲームオーバー画面の描画

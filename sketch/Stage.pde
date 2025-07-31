@@ -1,6 +1,6 @@
 class Stage {
     float time; // 制限時間
-    int baseTime = -100;
+    int baseTime = -100; // そのステージをスタートした時間を入れる
     int enemyNum; // ステージに登場する敵の数
     Player p; // プレイヤー
     Enemy[] enemies; // 敵を格納しておく配列

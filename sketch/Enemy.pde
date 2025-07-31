@@ -25,6 +25,7 @@ class Enemy {
     }
     
     void display() {
+        fill(0);
         rect(x, y, size, size);
     }
     
@@ -52,7 +53,7 @@ class Enemy {
     }
     
     // bullets の管理
-    void updateBullets(Player p) {
+    void updateBullets(Player p, ArrayList<Effect> effects) {
         for (int i = 0; i < bulletNum; i++) {
             // isDisplay が false の場合，bullets の処理しない
             if (!bullets[i].isDisplay) {
@@ -60,7 +61,7 @@ class Enemy {
             }
 
             bullets[i].display();
-            bullets[i].judgeHit(p);
+            bullets[i].judgeHit(p, effects);
             bullets[i].move();
             
             // 画面外に行ったら isDisplay を false にする

@@ -5,17 +5,24 @@ class Stage {
     Player p; // プレイヤー
     Enemy[] enemies; // 敵を格納しておく配列
     float bulletPer;
+    float movingEnemyPer;
+    ArrayList<Effect> effects = new ArrayList<Effect>();
     
-    Stage(float l, int n, float p0) {
+    Stage(float l, int n, float p0, float m0) {
         time = l;
         enemyNum = n;
         bulletPer = p0; // 弾の割合
+        movingEnemyPer = m0; //動く敵の割合
         p = new Player();
         enemies = new Enemy[enemyNum];
+        // 敵を画面の上半分，左右を1/8ずつ空けてのランダムな位置に出現
         for (int i = 0; i < enemyNum; i++) {
-            // 敵を画面の上半分，左右を1/8ずつ空けてのランダムな位置に出現
-            enemies[i] = new Enemy(random(width / 8, width * 7 / 8), random(height / 2), bulletPer);
+            if (random(1) <= movingEnemyPer) {
+                enemies[i] = new EnemyMoving(random(width), random(height / 2), bulletPer);
+            } else {
+                enemies[i] = new Enemy(random(width), random(height / 2), bulletPer);
         }
+    }
     }
     
     int stageManage() {
@@ -27,7 +34,6 @@ class Stage {
             if (p.isDead()) {
                 return 2;
             }
-            // ゲームオーバー時の時間表示どうしようね
         }
         
         // 始めて呼び出されたときに時間をセット
@@ -48,8 +54,16 @@ class Stage {
         for (int i = 0; i < enemyNum; i++) {
             enemies[i].display();
             enemies[i].materializeBullets();
-            enemies[i].updateBullets(p);
+            enemies[i].updateBullets(p, effects);
         };
+        
+        // エフェクトの描画・更新
+        for (int i = effects.size() - 1; i >= 0; i--) {
+            effects.get(i).update();
+            if (effects.get(i).isExpired()) {
+                effects.remove(i);
+            }
+        }
         
         return 0;
     };

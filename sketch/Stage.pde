@@ -13,8 +13,8 @@ class Stage {
         p = new Player();
         enemies = new Enemy[enemyNum];
         for (int i = 0; i < enemyNum; i++) {
-            // 画面の上半分のランダムな位置に出現
-            enemies[i] = new Enemy(random(width), random(height / 2), bulletPer);
+            // 敵を画面の上半分，左右を1/8ずつ空けてのランダムな位置に出現
+            enemies[i] = new Enemy(random(width / 8, width * 7 / 8), random(height / 2), bulletPer);
         }
     }
     

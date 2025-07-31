@@ -25,6 +25,7 @@ class Enemy {
     }
     
     void display() {
+        fill(0);
         rect(x, y, size, size);
     }
     

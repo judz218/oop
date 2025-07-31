@@ -8,6 +8,7 @@ class Player {
 
     // プレイヤーの描画処理
     void display() {
+        applyColorByState();
         ellipse(x, y, size, size);
         if (invincibleTimer > 0) {
             invincibleTimer -= 1;
@@ -26,7 +27,22 @@ class Player {
         invincibleTimer = 60;
     }
 
+    // 体力が0になったとき（死んだとき）
     boolean isDead() {
         return hp <= 0;
+    }
+
+    // 無敵時間のみ色を変更
+    void applyColorByState() {
+        if (invincibleTimer > 0) {
+            if (frameCount % 10 < 5) {
+                fill(255, 100, 100);
+            } else {
+                // 点滅
+                fill(255);
+            }
+        } else {
+            fill(0);
+        }
     }
 }

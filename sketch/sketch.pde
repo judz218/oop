@@ -10,7 +10,8 @@ void setup() {
     size(800, 800);
     textScreen = new TextScreen();
     for (int i = 0; i < st_num; i++) {
-        st[i] = new Stage(10 + 5 * i, i + 1, 0.7 - 0.1 * i); // ステージ（秒数，敵の数, まっすぐ飛ぶ弾の確率）   
+        // ステージ（秒数，敵の数, まっすぐ飛ぶ弾の確率, 動く敵の割合）
+        st[i] = new Stage(10 + 5 * i, i + 1, 0.7 - 0.1 * i, 1);    
     }
 }
 

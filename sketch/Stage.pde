@@ -13,10 +13,9 @@ class Stage {
         p = new Player();
         enemies = new Enemy[enemyNum];
         for (int i = 0; i < enemyNum; i++) {
-            // 画面の上半分のランダムな位置に出現，linearBullet の確率は一旦100%
+            // 画面の上半分のランダムな位置に出現
             enemies[i] = new Enemy(random(width), random(height / 2), bulletPer);
         }
-        print(width, height);
     }
     
     int stageManage() {

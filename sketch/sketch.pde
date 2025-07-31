@@ -1,4 +1,7 @@
-Stage st1;
+int st_index = 0;
+int st_num = 3;
+
+Stage st[] = new Stage[st_num];
 
 TextScreen textScreen; // テキスト描画用クラスのインスタンス
 boolean isStart = false; // 開始しているかを表す変数
@@ -6,10 +9,10 @@ boolean isStart = false; // 開始しているかを表す変数
 void setup() {
     size(800, 800);
     textScreen = new TextScreen();
-    st1 = new Stage(10, 1, 0.7); // ステージ1（時間：10秒，敵：1体, 確率:0.7）
+    for (int i = 0; i < st_num; i++) {
+        st[i] = new Stage(10 + 5 * i, i + 1, 0.7 - 0.1 * i); // ステージ（秒数，敵の数, まっすぐ飛ぶ弾の確率）   
+    }
 }
-
-
 
 void draw() {
     background(255);
@@ -23,10 +26,18 @@ void draw() {
         }
     } else {
         // ステージ処理の実行とステージの状態の取得
-        int status = st1.stageManage();
+        // 0: ゲーム中，1: ゲームクリア，2: ゲームオーバー
+        int status = st[st_index].stageManage();
         
         if (status == 1) { // クリア時
-            textScreen.drawStageClearScreen();
+            if (st_index != st_num - 1) { // ステージクリア処理
+                textScreen.drawStageClearScreen();
+                if (mousePressed) {
+                    st_index++;
+                }
+            } else { // ゲームクリア処理
+                textScreen.drawGameClearScreen();
+            }
         } else if (status == 2) { // ゲームオーバー
             textScreen.drawGameOverScreen();
         }

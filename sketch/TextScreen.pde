@@ -13,7 +13,7 @@ class TextScreen{
         fill(0);
         textSize(24);
         textAlign(CENTER, CENTER);
-        text("Stage Clear!", width / 2, height / 2);
+        text("Stage Clear!\n\nMouse Click to Next Stage", width / 2, height / 2);
     }
     
     // ゲームクリア画面の描画

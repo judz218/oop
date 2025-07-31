@@ -1,6 +1,6 @@
 class Stage {
     float time; // 制限時間
-    int base_time = 0;
+    int baseTime = -100;
     int enemyNum; // ステージに登場する敵の数
     Player p; // プレイヤー
     Enemy[] enemies; // 敵を格納しておく配列
@@ -8,7 +8,6 @@ class Stage {
     
     Stage(float l, int n, float p0) {
         time = l;
-        base_time = millis();
         enemyNum = n;
         bulletPer = p0; // 弾の割合
         p = new Player();
@@ -30,6 +29,11 @@ class Stage {
                 return 2;
             }
             // ゲームオーバー時の時間表示どうしようね
+        }
+        
+        // 始めて呼び出されたときに時間をセット
+        if (baseTime < 0) {
+            baseTime = millis();
         }
         
         // ステージ処理
@@ -54,9 +58,9 @@ class Stage {
     // 時間を一秒ずつ減らす
     void countDown() {
         int currentTime = millis();
-        float dTime = (currentTime - base_time) / 1000.0;
+        float dTime = (currentTime - baseTime) / 1000.0;
         time -= dTime;
-        base_time = currentTime;
+        baseTime = currentTime;
         
         if (time <= 0) {
             time = 0;

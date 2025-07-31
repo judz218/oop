@@ -1,6 +1,6 @@
 int st_index = 0;
 int st_num = 3;
-int mode = 0;
+boolean isFirst = true;
 
 Stage st[] = new Stage[st_num];
 
@@ -20,10 +20,10 @@ void setup() {
 void draw() {
     background(255);
     
-    if (mode == 0) {
+    if (isFirst) {
         textScreen.drawHowToPlayScreen();
         if (mousePressed) {
-            mode = 1;
+            isFirst = false;
         }
     }
     // スタート画面の描画

@@ -1,5 +1,6 @@
 int st_index = 0;
 int st_num = 3;
+int mode = 0;
 
 Stage st[] = new Stage[st_num];
 
@@ -13,11 +14,18 @@ void setup() {
         // ステージ（秒数，敵の数, まっすぐ飛ぶ弾の確率, 動く敵の割合）
         st[i] = new Stage(10 + 5 * i, i + 1, 0.7 - 0.1 * i, 1);    
     }
+    
 }
 
 void draw() {
     background(255);
     
+    if (mode == 0) {
+        textScreen.drawHowToPlayScreen();
+        if (mousePressed) {
+            mode = 1;
+        }
+    }
     // スタート画面の描画
     if (!isStart) {
         textScreen.drawStartScreen();

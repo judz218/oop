@@ -6,6 +6,7 @@ class Stage {
     Enemy[] enemies; // 敵を格納しておく配列
     float bulletPer;
     float movingEnemyPer;
+    ArrayList<Effect> effects = new ArrayList<Effect>();
     
     Stage(float l, int n, float p0, float m0) {
         time = l;
@@ -53,8 +54,16 @@ class Stage {
         for (int i = 0; i < enemyNum; i++) {
             enemies[i].display();
             enemies[i].materializeBullets();
-            enemies[i].updateBullets(p);
+            enemies[i].updateBullets(p, effects);
         };
+        
+        // エフェクトの描画・更新
+        for (int i = effects.size() - 1; i >= 0; i--) {
+            effects.get(i).update();
+            if (effects.get(i).isExpired()) {
+                effects.remove(i);
+            }
+        }
         
         return 0;
     };

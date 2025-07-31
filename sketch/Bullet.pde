@@ -3,6 +3,7 @@ abstract class Bullet{
     float dx,dy;
     int size = 10;
     boolean isDisplay = false;
+ 
 
     abstract void init(float x0, float y0);
     
@@ -21,13 +22,19 @@ abstract class Bullet{
     }
     
     // 当たり判定をし，プレイヤーにダメージを与える
-    void judgeHit(Player p) {
+    void judgeHit(Player p, ArrayList<Effect> effects) {
         if (p.invincibleTimer > 0) {
             return;
         }
+
         float dist = calcDist(p.x,p.y);
+
         if (dist <= (size + p.size) / 2) {
             p.takeDamage(1);
+
+            // エフェクト追加
+            effects.add(new Effect(x, y));
         }
+
     }
 }

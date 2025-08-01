@@ -12,10 +12,7 @@ void setup() {
     size(800, 800);
     textScreen = new TextScreen();
     
-    for (int i = 0; i < st_num; i++) {
-        // ステージ（秒数，敵の数, まっすぐ飛ぶ弾の確率, 動く敵の割合）
-        st[i] = new Stage(10 + 5 * i, i + 1, 0.7 - 0.1 * i, 0.5);    
-    }
+    initStages();
     
     backButton = new Button(width / 2 - 60, height / 2 + 40, 120, 40, "Back to Title");
 }
@@ -61,7 +58,7 @@ void mousePressed() {
     int status = st[st_index].stageManage();
     if (status == 2 && backButton.isMouseOver()) {
         isStart = false;  // タイトル画面に戻す
-        resetStages();
+        initStages();
         st_index = 0;     // ステージを最初に戻す
     }
 
@@ -70,9 +67,9 @@ void mousePressed() {
     }
 }
 
-void resetStages() {
-    st = new Stage[st_num];
+void initStages() {
     for (int i = 0; i < st_num; i++) {
+        // ステージ（秒数，敵の数, まっすぐ飛ぶ弾の確率, 動く敵の割合）
         st[i] = new Stage(10 + 5 * i, i + 1, 0.7 - 0.1 * i, 0.5); 
     }
 }

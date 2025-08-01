@@ -15,14 +15,15 @@ class Stage {
         movingEnemyPer = m0; //動く敵の割合
         p = new Player();
         enemies = new Enemy[enemyNum];
-        // 敵を画面の上半分，左右を1/8ずつ空けてのランダムな位置に出現
+        // 敵を画面の上半分のランダムな位置に出現させる
+        // 一定確率で動く敵にする
         for (int i = 0; i < enemyNum; i++) {
             if (random(1) <= movingEnemyPer) {
                 enemies[i] = new EnemyMoving(random(width), random(height / 2), bulletPer);
             } else {
                 enemies[i] = new Enemy(random(width), random(height / 2), bulletPer);
+            }
         }
-    }
     }
     
     int stageManage() {

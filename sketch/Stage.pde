@@ -19,9 +19,9 @@ class Stage {
         // 一定確率で動く敵にする
         for (int i = 0; i < enemyNum; i++) {
             if (random(1) <= movingEnemyPer) {
-                enemies[i] = new EnemyMoving(random(width), random(height / 2), bulletPer);
+                enemies[i] = new EnemyMoving(random(width - Enemy.size), random(height / 2 - Enemy.size), bulletPer);
             } else {
-                enemies[i] = new Enemy(random(width), random(height / 2), bulletPer);
+                enemies[i] = new Enemy(random(width - Enemy.size), random(height / 2  - Enemy.size), bulletPer);
             }
         }
     }

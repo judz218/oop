@@ -14,7 +14,7 @@ void setup() {
     
     for (int i = 0; i < st_num; i++) {
         // ステージ（秒数，敵の数, まっすぐ飛ぶ弾の確率, 動く敵の割合）
-        st[i] = new Stage(10 + 5 * i, i + 1, 0.7 - 0.1 * i, 1);    
+        st[i] = new Stage(10 + 5 * i, i + 1, 0.7 - 0.1 * i, 0.5);    
     }
     
     backButton = new Button(width / 2 - 60, height / 2 + 40, 120, 40, "Back to Title");
@@ -23,9 +23,9 @@ void setup() {
 void draw() {
     background(255);
     
+    // 遊び方画面の描画
     if (isFirst) {
         textScreen.drawHowToPlayScreen();
-
     }
     // スタート画面の描画
     if (!isStart) {

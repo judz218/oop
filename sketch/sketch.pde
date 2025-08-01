@@ -49,6 +49,7 @@ void draw() {
 void mousePressed() {
     if (isFirst) {
         isFirst = false;
+        isStart = true;
         return;
     }
 

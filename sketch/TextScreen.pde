@@ -1,11 +1,10 @@
 class TextScreen{
-    
     // スタート画面の描画
     void drawStartScreen() {
         fill(0);
         textSize(24);
         textAlign(CENTER, CENTER);
-        text("Mouse Click to Start!", width / 2, height -100);
+        text("Mouse Click to Start!", width / 2, height / 2);
     }
     
     // ステージクリア画面の描画
@@ -30,10 +29,12 @@ class TextScreen{
         textSize(24);
         textAlign(CENTER, CENTER);
         text("GAME OVER", width / 2, height / 2);
+        backButton.display();        
     }
 
     // 遊びかたページの描画
     void drawHowToPlayScreen() {
+        background(255);
         fill(0);
         textSize(30);
         textAlign(CENTER, TOP);

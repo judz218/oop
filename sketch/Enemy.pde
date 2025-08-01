@@ -1,6 +1,6 @@
 class Enemy {
     float x, y;
-    int size = 50;
+    static final int size = 50;
     int shootCooldown;
     int bulletNum = 100;
     int frameCount = 0;
